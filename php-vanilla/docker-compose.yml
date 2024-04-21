@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  mysql:
+    image: "mysql:8.0"
+    container_name: "mysql-vanilla"
+    restart: "always"
+    environment:
+      MYSQL_ROOT_PASSWORD: "senha_segura"
+      MYSQL_HOST: "mysql-vanilla"
+      MYSQL_DATABASE: "BD_phpvanilla"
+    ports:
+      - "3308:3306"
+    volumes:
+      - "./data:/var/lib/mysql"
+    networks:
+      - mysql-phpmyadmin
+
+  php:
+    image: "phpmyadmin"
+    container_name: "php-vanilla"
+    environment:
+      PHP_EXTENSIONS: "mysqli.so"
+    volumes:
+      - "./app:/var/www/html"
+    ports:
+      - "9000:80"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    networks:
+      - mysql-phpmyadmin
+
+networks:
+  mysql-phpmyadmin:
+
+volumes:
+  data:
