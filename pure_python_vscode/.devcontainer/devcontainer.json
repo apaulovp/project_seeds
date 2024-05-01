@@ -1,0 +1,15 @@
+{
+  "image": "python:3.4.5",
+  "remoteEnv": {
+      "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+    },
+    "customizations": {
+      "vscode": {
+        // Set *default* container specific settings.json values on container create.
+        "settings": {},
+        // Add the IDs of extensions you want installed when the container is created.
+        "extensions": []
+      }
+    },
+    "appPort": [8000]
+}
